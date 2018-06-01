@@ -1,0 +1,57 @@
+﻿@model UniversityData.Entities.Student
+
+@{
+	ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+	<h4>Student</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.LastName)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.LastName)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.FirstMidName)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.FirstMidName)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.EnrollmentDate)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.EnrollmentDate)
+		</dd>
+
+	</dl>
+
+	<ul>
+		@foreach (var item in Model.Enrollments)
+		{
+			<li>
+				@item.Course.Title
+				@if (item.Grade != null)
+				{
+					@item.Grade.Value
+				}
+			</li>
+		}
+	</ul>
+
+</div>
+<p>
+	@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+	@Html.ActionLink("Add Enrollment", "StudentCreate", "Enrollment", new { id = Model.Id }, null) |
+	@Html.ActionLink("Back to List", "Index")
+</p>
